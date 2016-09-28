@@ -155,10 +155,4 @@ function plural(num){
 function hello(text) {
   return 'Привет, ' + text;
 }
-
-if (typeof exports === 'object') {
-  exports.hello = hello;
-  exports.filter = filter;
-  exports.plural = plural;
-  exports.plur = plur;
 }
