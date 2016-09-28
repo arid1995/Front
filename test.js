@@ -1,8 +1,8 @@
-let assert = require('assert');
-let hello = require('./public/main').hello;
-let filter = require('./public/main').filter;
-let plural = require('./public/main').plural;
-let plur = require('./public/main').plur;
+const assert = require('assert');
+const hello = require('./public/libraries/textProcessing.js').hello;
+const filter = require('./public/libraries/textProcessing.js').filter;
+const plural = require('./public/libraries/textProcessing.js').plural;
+const plur = require('./public/libraries/textProcessing.js').plur;
 
 assert.equal(hello('Test'), 'Привет, Test');
 
@@ -30,5 +30,3 @@ assert.equal(filter('God I hate this Shrek movie and the fucking Dreamworks ' +
 assert.equal(filter('КЕК ПЕК, Shrek is a kek.'), '*** ***, ***** is a ***.');
 assert.equal(filter('shrek must die cause he is a total kek!'),
                     '***** must die cause he is a total ***!');
-//TODO: Кейсы для функции filter
-// assert.equal(filter('КЕК'), '***');
