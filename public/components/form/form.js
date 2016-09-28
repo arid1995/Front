@@ -14,7 +14,7 @@
       this.render();
     }
 
-    render () {
+    render() {
       this._updateHtml()
       this._installControls();
     }
@@ -32,7 +32,7 @@
     /**
      * Обновить html компонента
      */
-    _updateHtml () {
+    _updateHtml() {
       this.el.innerHTML = `
         <form>
           <h1>${this.data.title}</h1>
@@ -62,7 +62,7 @@
      * @param {string} type - имя события
      * @param {function} callback - коллбек
      */
-    on (type, callback) {
+    on(type, callback) {
       this.el.addEventListener(type, callback);
     }
 
@@ -75,7 +75,7 @@
       const elements = form.elements;
       const fields = {};
 
-      Object.keys(elements).forEach(element => {
+      Object.keys(elements).forEach((element) => {
         const name = elements[element].name;
         const value = elements[element].value;
 
@@ -91,6 +91,6 @@
 
   }
 
-  //export
+  // export
   window.Form = Form;
 })();

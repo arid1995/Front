@@ -2,26 +2,26 @@
   'use strict';
 
   class Button {
-    constructor (options) {
+    constructor(options) {
       this.text = options.text;
       this.attrs = options.attrs || [];
       this.el = document.createElement('button');
     }
 
-    setAttrs (attrs) {
+    setAttrs(attrs) {
       Object.keys(attrs).forEach(name => {
         this.el.setAttribute(name, attrs[name]);
-      })
+      });
     }
 
-    render () {
+    render() {
       this.el.innerHTML = this.text;
       this.el.classList.add('button');
       this.setAttrs(this.attrs);
       return this;
     }
 
-    toString () {
+    toString() {
       return this.el.outerHTML;
     }
   }
