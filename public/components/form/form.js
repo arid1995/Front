@@ -6,7 +6,7 @@
 
     /**
      * Конструктор класса Form
-      */
+    */
     constructor(options = { data: {} }) {
       this.data = options.data;
       this.el = options.el;
@@ -15,7 +15,7 @@
     }
 
     render() {
-      this._updateHtml()
+      this._updateHtml();
       this._installControls();
     }
 
@@ -23,10 +23,12 @@
      * Вернуть поля формы
      * @return {string}
      */
-    _getFields () {
-      let { fields = [] } = this.data;
+    _getFields() {
+      const { fields = [] } = this.data;
 
-      return fields.map(field => { return `<input type="text" name="${field.name}">` }).join(' ')
+      return fields.map((field) => {
+        return `<input type="${field.type}" name="${field.name}" placeholder="${field.label}">`
+      }).join(' ');
     }
 
     /**
@@ -48,11 +50,11 @@
     /**
      * Вставить управляющие элементы в форму
      */
-    _installControls () {
-      let { controls = [] } = this.data;
+    _installControls() {
+      const { controls = [] } = this.data;
 
-      controls.forEach(data => {
-        let control = new Button({text: data.text}).render();
+      controls.forEach((data) => {
+        const control = new Button({ text: data.text }).render();
         this.el.querySelector('.js-controls').appendChild(control.el);
       });
     }

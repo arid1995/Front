@@ -1,9 +1,5 @@
 (function () {
-  'use strict';
-
   // import
-  let Button = window.Button;
-
   class Chat {
 
     /**
@@ -46,13 +42,9 @@
       `;
     }
 
-    filter (str, rules = ['КЕК']) {
-      return `//TODO: реализовать filter`;
-    }
-
-    createMessage (opts, isMy = false) {
-      let message = document.createElement('div');
-      let email = document.createElement('div');
+    createMessage(opts, isMy = false) {
+      const message = document.createElement('div');
+      const email = document.createElement('div');
 
       message.classList.add('chat__message');
       email.classList.add('chat__email');
@@ -69,22 +61,22 @@
       return message;
     }
 
-    onChat (form) {
-      let data = {
+    onChat(form) {
+      const data = {
         message: form.elements['message'].value,
         email: this.data.email
       };
 
-      let result = technolibs.request('/api/messages', data);
+      const result = technolibs.request('/api/messages', data);
       form.reset();
     }
 
-    renderMessages (items) {
-      let messages = this.el.querySelector('#jsMessages');
+    renderMessages(items) {
+      const messages = this.el.querySelector('#jsMessages');
       messages.innerHTML = '';
 
-      items.forEach(item => {
-        let message = this.createMessage(item, item.email === this.data.email);
+      items.forEach((item) => {
+        const message = this.createMessage(item, item.email === this.data.email);
         messages.appendChild(message);
       });
       messages.scrollTop = messages.scrollHeight;
@@ -99,17 +91,17 @@
         .addEventListener('submit', (event) => {
           event.preventDefault();
           this.onChat(event.target);
-        })
+        });
     }
 
-    on (type, callback) {
+    on(type, callback) {
       this.el.addEventListener(type, callback);
     }
 
-    //TODO вернуть данные формы
-    getFormData () {
+    // TODO вернуть данные формы
+    getFormData() {
       return {
-        key: 'value'
+        key: 'value',
       };
     }
 

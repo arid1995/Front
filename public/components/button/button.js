@@ -1,15 +1,15 @@
 (function () {
-  'use strict';
-
   class Button {
     constructor(options) {
       this.text = options.text;
-      this.attrs = options.attrs || [];
+      this.attrs = options.attrs;
       this.el = document.createElement('button');
+
+      this.render();
     }
 
-    setAttrs(attrs) {
-      Object.keys(attrs).forEach(name => {
+    setAttrs(attrs = []) {
+      attrs.forEach((name) => {
         this.el.setAttribute(name, attrs[name]);
       });
     }
@@ -23,6 +23,10 @@
 
     toString() {
       return this.el.outerHTML;
+    }
+
+    on(type, callback) {
+      this.el.addEventListener(type, callback);
     }
   }
 
