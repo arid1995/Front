@@ -7,8 +7,9 @@
     /**
      * Конструктор класса Form
     */
-    constructor(options = { data: {} }) {
+    constructor(options = { data: {}, attrs: {} }) {
       this.data = options.data;
+      this.attrs = options.attrs;
       this.el = options.el;
 
       this.render();
@@ -32,11 +33,18 @@
     }
 
     /**
+     * Получить атрибуты компонента
+     */
+    setAttrs(attrs = {}) {
+      Object.keys(attrs).forEach(key => this.el.setAttribute(key, attrs[key]));
+    }
+
+    /**
      * Обновить html компонента
      */
     _updateHtml() {
       this.el.innerHTML = `
-        <form>
+        <form method="POST">
           <h1>${this.data.title}</h1>
           <div>
             ${this._getFields()}
@@ -45,6 +53,7 @@
           </div>
         <form>
       `;
+      this.setAttrs(this.attrs);
     }
 
     /**
@@ -91,6 +100,18 @@
       return fields;
     }
 
+    validate() {
+      const fields = this.getFormData();
+      let status = 0;
+
+      Object.keys(fields).forEach((value) => {
+        if (fields[value] === '') {
+          alert(`Field ${value} must not be empty`);
+          status = 1;
+        }
+      });
+      return status;
+    }
   }
 
   // export

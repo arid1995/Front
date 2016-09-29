@@ -11,7 +11,7 @@
     const registerButton = document.querySelector('.js-reg-button');
 
     const regButton = new Button({
-      options: { text: 'Войти' },
+      text: 'Sign up',
     });
 
     regButton.on('click', (event) => {
@@ -27,17 +27,16 @@
       el: document.createElement('div'),
       data: {
         title: 'Login',
-        action: '127.0.0.1/api/session',
         fields: [
           {
             label: 'Login',
-            name: 'user',
+            name: 'login',
             type: 'text',
           },
           {
-            label: 'email',
-            name: 'email',
-            type: 'email',
+            label: 'password',
+            name: 'password',
+            type: 'password',
           },
         ],
         controls: [
@@ -55,11 +54,10 @@
       el: document.createElement('div'),
       data: {
         title: 'Sign up',
-        action: '127.0.0.1/api/user',
         fields: [
           {
             label: 'Login',
-            name: 'user',
+            name: 'login',
             type: 'text',
           },
           {
@@ -96,9 +94,15 @@
     loginForm.on('submit', (event) => {
       event.preventDefault();
 
-      const formData = loginForm.getFormData();
-      technolibs.request('/api/login', formData);
+      if (loginForm.validate()) return;
 
+      const formData = loginForm.getFormData();
+      const response = request('http://127.0.0.1:8080/api/session', formData, 'POST')
+      if (response === 'fail') return;
+
+      const responseObj = JSON.parse(response);
+
+      alert(responseObj.toString());
       chat.set({
         username: formData.user,
         email: formData.email,
@@ -115,8 +119,11 @@
 
     registerForm.on('submit', (event) => {
       event.preventDefault();
+      if (registerForm.validate()) return;
 
-      const formData = loginForm.getFormData();
+      const formData = registerForm.getFormData();
+
+      if (request('http://127.0.0.1:8080/api/user', formData, 'POST') === 'fail') return;
 
       loginPage.hidden = false;
       chatPage.hidden = true;

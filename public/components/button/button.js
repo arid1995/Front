@@ -3,8 +3,8 @@
     constructor(options) {
       this.text = options.text;
       this.attrs = options.attrs;
-      this.el = document.createElement('button');
 
+      this.el = document.createElement('button');
       this.render();
     }
 
@@ -18,6 +18,7 @@
       this.el.innerHTML = this.text;
       this.el.classList.add('button');
       this.setAttrs(this.attrs);
+
       return this;
     }
 
