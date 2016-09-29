@@ -25,26 +25,22 @@
     if (num === 1) {
       return 'Рады приветствовать на нашем курсе!';
     }
-    var count = 15;
-    if (num < count){
-      return ("Кликай дальше!! Еще осталось " + (count-num) + " раз(а)");
+    const count = 15;
+    if (num < count) {
+      return (`Кликай дальше!! Еще осталось ${count - num} раз(а)`);
     }
     return '01001000 01101001 00101100 00100000 01100010 01110010 01101111';
   }
 
-  function hello(text) {
-    return 'Привет, ' + text;
-  }
-
-  function filter (str, rules = ['kek', 'кек', 'shrek', 'пек', 'шрек',
+  function filter(str, rules = ['kek', 'кек', 'shrek', 'пек', 'шрек',
                                 'dreamworks']) {
-    var result = str;
-    rules.forEach(function(item, i, rules) {
-      var patch = "";
-      for (var i = 0; i < item.length; i++) {
-        patch = patch + '*'
+    let result = str;
+    rules.forEach((item, it) => {
+      let patch = '';
+      for (let i = 0; i < item.length; i++) {
+        patch += '*';
       }
-      result = result.replace(new RegExp('\s?' + item + '\s?', 'gi'), patch);
+      result = result.replace(new RegExp(`\s?${item}\s?`, 'gi'), patch);
     });
 
     return result;

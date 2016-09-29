@@ -13,9 +13,9 @@ app.use(parser.json());
 app.use('/libs', express.static('node_modules'));
 
 app.post('/api/messages', (req, res) => {
-  technolibs.publish(req.body).then(body => res.json(req.body));
+  technolibs.publish(req.body).then(body => res.json(body));
 });
-let emails = new Map();
+const emails = new Map();
 
 app.post('/users', (req, res) => {
   console.log(req.body);
@@ -25,13 +25,13 @@ app.post('/users', (req, res) => {
   res.send(counter.toString());
 });
 
-app.get('/api/messages', function (req, res) {
+app.get('/api/messages', (req, res) => {
   res.send([
     technoDoc.mock(require('./api/scheme/Message')),
     technoDoc.mock(require('./api/scheme/Message')),
     technoDoc.mock(require('./api/scheme/Message')),
-    technoDoc.mock(require('./api/scheme/Message'))
-  ])
+    technoDoc.mock(require('./api/scheme/Message')),
+  ]);
 });
 
 app.listen(process.env.PORT || 3000, () => {

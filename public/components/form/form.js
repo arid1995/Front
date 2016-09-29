@@ -27,9 +27,9 @@
     _getFields() {
       const { fields = [] } = this.data;
 
-      return fields.map((field) => {
-        return `<input type="${field.type}" name="${field.name}" placeholder="${field.label}">`
-      }).join(' ');
+      return fields.map(field =>
+        `<input type="${field.type}" name="${field.name}" placeholder="${field.label}">`
+      ).join(' ');
     }
 
     /**

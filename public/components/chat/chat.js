@@ -1,5 +1,7 @@
 (function () {
   // import
+  const filter = window.filter;
+
   class Chat {
 
     /**
@@ -63,11 +65,11 @@
 
     onChat(form) {
       const data = {
-        message: form.elements['message'].value,
-        email: this.data.email
+        message: form.elements.message.value,
+        email: this.data.email,
       };
 
-      const result = technolibs.request('/api/messages', data);
+      technolibs.request('/api/messages', data);
       form.reset();
     }
 
@@ -83,7 +85,7 @@
     }
 
     subscribe() {
-      technolibs.onMessage(data => {
+      technolibs.onMessage((data) => {
         this.renderMessages(Object.keys(data).map(key => data[key]));
       });
 

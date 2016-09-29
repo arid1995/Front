@@ -97,17 +97,16 @@
       if (loginForm.validate()) return;
 
       const formData = loginForm.getFormData();
-      const response = request('http://127.0.0.1:8080/api/session', formData, 'POST')
+      const response = request('http://127.0.0.1:8080/api/session', formData, 'POST');
       if (response === 'fail') return;
 
       const responseObj = JSON.parse(response);
 
       alert(responseObj.toString());
       chat.set({
-        username: formData.user,
-        email: formData.email,
-      })
-      .render();
+        username: formData.login,
+        email: formData.password,
+      }).render();
 
       chat.subscribe();
 
